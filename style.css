@@ -1,0 +1,780 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+/* Base Styles for the entire page */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  margin-top: 80px; /* Space to accommodate fixed navbar */
+}
+
+/* Navbar Styles */
+.navbar {
+  background: transparent; /* fully transparent background */
+  backdrop-filter: none;   /* no blur effect */
+  border: none;            /* no border */
+  box-shadow: none;        /* no shadow */
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+
+
+/* Logo Wrapper */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Logo Image */
+.logo-img {
+  height: 60px;
+  margin-right: 10px;
+}
+
+/* Logo Text */
+.logo-text {
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+}
+
+/* Emphasize the first letter of the logo text */
+.logo-text::first-letter {
+  font-size: 33px;
+  font-weight: bold;
+}
+
+/* Navigation links container */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navigation link styles */
+.nav-links li a {
+  color: white !important; /* Ensure white text */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for navbar links */
+.nav-links li a:hover {
+  color: #f35c50;
+  text-decoration: underline;
+  text-decoration-color: #f35c50;
+  text-decoration-thickness: 3px;
+}
+  /* Hero Section Styles */
+.hero {
+  background-image: url('bakgrawnd.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: #fff;
+  padding-left: 75px;
+  margin-top: -80px;
+  text-align: left;
+  padding-top: 160px;
+
+}
+
+
+.hero h2 {
+  font-size: 50px;
+  margin-bottom: 35px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-bottom: 120px;
+  padding-top: 80px;
+
+}
+
+.hero p {
+
+  font-size: 30px;
+  margin-bottom: 0px;
+  font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.butones {
+ margin-top: 60px;
+  background-color: #fff;
+  color: #f35c50;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+/* Featured Products Section */
+.popular {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  width: 220px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.09);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  font-weight: bold;
+  color: #f35c50;
+}
+
+.footer {
+  text-align: center;
+  padding: 13px;
+  color: white;
+  background-color: rgb(49, 36, 36);
+  margin-top: 40px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons in product cards */
+.product-card button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  transition: transform 0.2s ease;
+}
+
+.product-card button:hover {
+  transform: scale(1.1);
+}
+
+.add-to-cart {
+  background-color: orange;
+  color: white;
+}
+
+.add-to-cart:hover {
+  background-color: #c47b1b;
+}
+
+.checkout {
+  background-color: #f35c50;
+  color: white;
+}
+
+.checkout:hover {
+  background-color: #db2e24;
+}
+
+/* Modal Container */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Close button for modal */
+.close-button {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: #f35c50;
+}
+
+#receipt-items,
+#cart-items {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#receipt-items p,
+#cart-items p {
+  margin: 5px 0;
+}
+
+/* Checkout from cart modal */
+.checkout-from-cart {
+  background-color: #f35c50;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-from-cart:hover {
+  background-color: #db2e24;
+}
+
+/* Customer Form */
+#customerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#customerForm input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+/* Receipt Modal */
+#receiptModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+#receiptModal .modal-content {
+  text-align: left;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+.receipt-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f35c50;
+  border-bottom: 2px solid #f35c50;
+  padding-bottom: 10px;
+}
+
+.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.receipt-product {
+  font-weight: 500;
+  color: #333;
+}
+
+.receipt-price {
+  color: #f35c50;
+  font-weight: bold;
+}
+
+#total-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 20px;
+  margin-top: 10px;
+  border-top: 2px solid #f35c50;
+  color: #111;
+}
+
+.total-label {
+  color: #555;
+}
+
+.total-amount {
+  color: #f35c50;
+}
+
+.receipt-section {
+  margin-bottom: 20px;
+}
+
+.receipt-section h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+.receipt-section p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.receipt-section.total p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}
+
+#receiptModal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* dito na stop*/
+#receiptModal button:hover {
+  background-color: #45a049;
+}
+
+/* Buy Now button */
+.buy-now {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.buy-now:hover {
+  background-color: #c51f1f;
+}
+
+/* Cart Modal */
+#cartModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#cartModal .modal-content {
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Cart item */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item span {
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-item button {
+  background-color: #f35c50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-item button:hover {
+  background-color: #e14f40;
+}
+
+#cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Toast Container */
+#toast-container {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between toasts */
+  z-index: 9999; /* Ensure toasts appear on top */
+}
+
+/* Common Toast Styles */
+.toast {
+  padding: 16px 20px;
+  min-width: 250px;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Success Toast (Green for Success) */
+.toast.success {
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  animation: toastIn 0.5s forwards;
+}
+
+/* Error Toast (Red for Error) */
+.toast.error {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  animation: toastIn 0.5s forwards;
+}
+
+/* Animation for toast appearance */
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-out animation for disappearing toast */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* To ensure fade-out effect */
+.toast.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Checkout Modal */
+#checkout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#checkout-modal .modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+#checkout-modal .modal-content h2.abcd {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f35c50;
+  border-bottom: 2px solid #f35c50;
+  padding-bottom: 10px;
+}
+
+.checkout-section {
+  margin-bottom: 20px;
+}
+
+.checkout-section h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+.checkout-section p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.checkout-section.total p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}
+
+#checkout-modal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#checkout-modal button:hover {
+  background-color: #45a049;
+}
+
+/* Checkout Modal Title (match receipt style) */
+#checkout-modal .modal-content h2.abcd {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f35c50;
+  border-bottom: 2px solid #f35c50;
+  padding-bottom: 10px;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 30px;
+  margin-top: 1px;
+  background: brown;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Style for the cart icon and count */
+.nav-links li a {
+  position: relative;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Cart Count Popup */
+.cart-count {
+  position: absolute;
+  top: -8px; /* Adjusted to position the number slightly above the cart icon */
+  right: -12px; /* Slightly adjusted for better alignment with the cart text */
+  
+  /* Font style for better clarity */
+  font-size: 14px; /* Slightly larger for better visibility */
+  font-weight: bold; /* Bold to make the number stand out */
+  color: white; /* White text color for contrast with the bubble */
+  
+  /* Styling for the bubble */
+  background-color: red; /* Plain red bubble */
+  border-radius: 50%; /* Circular bubble */
+  
+  /* Size of the bubble */
+  width: 24px; /* Slightly larger bubble */
+  height: 24px; /* Height matched to width for a perfect circle */
+  
+  /* Flexbox to center the number inside the bubble */
+  display: flex;
+  justify-content: center; /* Centers number horizontally */
+  align-items: center; /* Centers number vertically */
+  
+  /* Ensure there's no extra padding or margin causing the white line */
+  padding: 0; /* No padding */
+  margin: 0; /* No margin */
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; /* Ensure it's using flex */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+
+
+/* Contact styling */
+
+.contact-footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.contact-form button {
+  padding: 12px;
+  background-color: #ff6a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #e65c00;
+}
+
+.contact-info {
+  margin-top: 30px;
+  font-size: 15px;
+}
+

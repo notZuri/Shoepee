@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sumisipang Sapatos</title>
+  <link rel="stylesheet" href="style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo">
+      <img src="piclogo.jpeg" alt="Kickin' Shoes Logo" class="logo-img">
+      <span class="logo-text">Kickin' Shoes</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#popular">Popular</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#" onclick="showCart()">Cart 🛒 <span id="cart-count" class="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h2>Step Into Style</h2>
+    <p>Fuel your every step</p>
+    <a href="#popular"><button class="butones">Shop Now</button></a>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="popular" id="popular">
+    <h2 class="subtitle">'Wag ka na pumili, hindi ka naman pinili</h2>
+    <div class="product-grid">
+      <!-- Product Cards -->
+      <div class="product-card" data-name="AirFlex Pro" data-price="2999">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="AirFlex Pro">
+        <h3>Adadis</h3>
+        <p>₱2,999</p>
+        <button class="add-to-cart" onclick="addToCart('AirFlex Pro', 2999)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('AirFlex Pro', '₱2,999', 'A great running shoe with excellent grip and comfort.')">Buy Now</button>
+      </div>
+
+      <div class="product-card" data-name="UrbanStride" data-price="3499">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="UrbanStride">
+        <h3>Nyek</h3>
+        <p>₱3,499</p>
+        <button class="add-to-cart" onclick="addToCart('UrbanStride', 3499)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('UrbanStride', '₱3,499', 'Perfect for casual wear, stylish and comfortable.')">Buy Now</button>
+      </div>
+
+      <div class="product-card" data-name="StrideMaster" data-price="3999">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="StrideMaster">
+        <h3>Conbirds</h3>
+        <p>₱3,999</p>
+        <button class="add-to-cart" onclick="addToCart('StrideMaster', 3999)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('StrideMaster', '₱3,999', 'A high-performance shoe for intense workouts.')">Buy Now</button>
+      </div>
+
+      <div class="product-card" data-name="StepChaser" data-price="2699">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="StepChaser">
+        <h3>Adidas</h3>
+        <p>₱2,699</p>
+        <button class="add-to-cart" onclick="addToCart('StepChaser', 2699)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('StepChaser', '₱2,699', 'Casual yet stylish footwear for everyday comfort.')">Buy Now</button>
+      </div>
+
+      <div class="product-card" data-name="ComfortBoost" data-price="3199">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="ComfortBoost">
+        <h3>Nike</h3>
+        <p>₱3,199</p>
+        <button class="add-to-cart" onclick="addToCart('ComfortBoost', 3199)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('ComfortBoost', '₱3,199', 'Enhance your walking experience with this cushioned shoe.')">Buy Now</button>
+      </div>
+
+      <div class="product-card" data-name="SpeedRun" data-price="4199">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="SpeedRun">
+        <h3>Converse</h3>
+        <p>₱4,199</p>
+        <button class="add-to-cart" onclick="addToCart('SpeedRun', 4199)">Add to Cart</button>
+        <button class="buy-now" onclick="buyNow('SpeedRun', '₱4,199', 'A lightweight shoe designed for fast-paced athletes.')">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section / Footer -->
+  <footer class="contact-footer" id="contact">
+    <div class="contact-container">
+      <h2>Contact Us</h2>
+      <p>May reklamo ka? Edi magreklamo ka!</p>
+
+      <form action="backend/contact.php" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="contact-info">
+        <p>Email: sumisipangsapatos@gmail.com</p>
+        <p>Phone: +63 969 696 6969</p>
+      </div>
+      <p>&copy; Sumisipang Sapatos.</p>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeCart()">×</span>
+      <h2>Shopping Cart</h2>
+      <div id="cart-items"></div>
+      <h3>Total: ₱<span id="cart-total">0</span></h3>
+      <button onclick="checkoutCart()" class="checkout-from-cart">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Customer Info Modal -->
+  <div id="customerModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeCustomerForm()">×</span>
+      <h2>Customer Information</h2>
+      <form id="customerForm" onsubmit="submitCustomerForm(event)">
+        <input type="text" id="customerName" placeholder="Full Name" required />
+        <input type="email" id="customerEmail" placeholder="Email" required />
+        <input type="tel" id="customerPhone" placeholder="Phone Number" required />
+        <button type="submit" class="checkout-from-cart">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Receipt Modal -->
+  <div id="receiptModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2 class="receipt-title">Receipt</h2>
+      <div id="receipt-items" class="receipt-section">
+        <h3>Product Details</h3>
+        <div id="product-details"></div>
+      </div>
+      <div class="receipt-section">
+        <h3>Customer Details</h3>
+        <p><strong>Name:</strong> <span id="customerNameReceipt"></span></p>
+        <p><strong>Email:</strong> <span id="customerEmailReceipt"></span></p>
+        <p><strong>Phone:</strong> <span id="customerPhoneReceipt"></span></p>
+      </div>
+      <div class="receipt-section total">
+        <h3>Total Price <span id="total-price">0.00</span></h3>
+      </div>
+      <button onclick="document.getElementById('receiptModal').style.display='none'">Close</button>
+    </div>
+  </div>
+
+  <!-- Buy Now Direct Checkout Modal -->
+  <div id="checkout-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">×</span>
+      <h2 class="abcd">Product Description</h2>
+      <p id="product-name"></p>
+      <p id="product-price"></p>
+      <p id="product-description"></p>
+      <form onsubmit="submitCheckout(event)">
+        <button type="submit">Confirm & Checkout</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- JS File -->
+  <script src="script.js"></script>
+</body>
+</html>
