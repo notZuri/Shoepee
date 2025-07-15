@@ -1,0 +1,26 @@
+#cart-items {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#cart-items p {
+  margin: 5px 0;
+}
+
+.checkout-from-cart {
+  background-color: #f35c50;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-from-cart:hover {
+  background-color: #db2e24;
+} 

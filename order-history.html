@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order History - Kickin' Shoes</title>
+  <link rel="icon" href="assets/img/logoshoepee.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/products.css">
+  <link rel="stylesheet" href="assets/css/modals.css">
+  <link rel="stylesheet" href="assets/css/cart.css">
+  <link rel="stylesheet" href="assets/css/order-history.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f6f7fb 60%, #ffeaea 100%);
+    }
+    .navbar-light .nav-links li a,
+    .navbar-light .logo-text {
+      color: #222 !important;
+      text-shadow: none;
+      transition: color 0.3s;
+    }
+    .navbar-dark .nav-links li a,
+    .navbar-dark .logo-text {
+      color: #fff !important;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+      transition: color 0.3s;
+    }
+    .order-history-section {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      padding: 48px 36px 36px 36px;
+      min-height: 60vh;
+    }
+    .order-history-header-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .order-history-icon {
+      font-size: 2.5rem;
+      background: #ff1100;
+      color: #fff;
+      border-radius: 50%;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(255,17,0,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .order-history-section h2 {
+      text-align: center;
+      margin-bottom: 0;
+      color: #ff1100;
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .order-empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 60px 0 40px 0;
+      color: #888;
+      font-size: 1.1rem;
+    }
+    .order-empty-state img {
+      width: 110px;
+      margin-bottom: 18px;
+      opacity: 0.7;
+    }
+    .order-empty-cta {
+      margin-top: 18px;
+      background: #ff1100;
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 1.08em;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(255,17,0,0.10);
+      transition: background 0.2s, color 0.2s;
+      border: none;
+      display: inline-block;
+    }
+    .order-empty-cta:hover {
+      background: #c00b0b;
+      color: #fff;
+    }
+    .order-history-item {
+      background: #f8f9fa;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 22px 20px 14px 20px;
+      margin-bottom: 28px;
+      border: 1.5px solid #ececec;
+      transition: box-shadow 0.25s, border 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .order-history-item:hover {
+      box-shadow: 0 8px 32px rgba(255,17,0,0.13);
+      border: 2px solid #ff1100;
+    }
+    .order-history-flex-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .order-history-left-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 120px;
+      gap: 8px;
+    }
+    .order-history-left-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-top: 6px;
+    }
+    .order-history-main-img {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      min-height: 80px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .order-history-main-info {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1;
+      min-width: 0;
+      margin-top: 2px;
+      align-items: flex-end;
+      text-align: right;
+    }
+    .order-status-badge {
+      background: #e6f7e6;
+      color: #1ca21c;
+      border-radius: 8px;
+      padding: 4px 14px;
+      font-size: 1.01rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 1px 4px rgba(28,162,28,0.04);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+      width: fit-content;
+    }
+    .order-status-icon {
+      font-size: 1.1em;
+      margin-right: 2px;
+    }
+    .order-product-name {
+      font-weight: 700;
+      color: #ff1100;
+      letter-spacing: 0.5px;
+      font-size: 1.07em;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    }
+    .order-product-specs {
+      color: #888;
+      font-size: 0.98em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;
+    }
+    .order-product-price {
+      color: #222;
+      font-weight: 700;
+      font-size: 1.05em;
+      margin-left: 0;
+      white-space: nowrap;
+    }
+    .order-buy-again {
+      background: #ff1100;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 18px;
+      font-size: 1em;
+      font-weight: 600;
+      margin-top: 6px;
+      margin-right: 8px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 1px 4px rgba(255,17,0,0.04);
+      width: fit-content;
+      display: inline-block;
+    }
+    .order-buy-again:hover, .order-buy-again:focus {
+      background: #c00b0b;
+      color: #fff;
+      outline: none;
+    }
+    .order-details-toggle {
+      background: #fff;
+      color: #ff1100;
+      border: 1.5px solid #ff1100;
+      border-radius: 8px;
+      padding: 4px 14px;
+      font-size: 1.01rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      box-shadow: 0 1px 4px rgba(255,17,0,0.04);
+      margin-top: 8px;
+      margin-left: 0;
+      width: fit-content;
+      display: inline-block;
+    }
+    .order-details-toggle:hover, .order-details-toggle:focus {
+      background: #ff1100;
+      color: #fff;
+      border: 1.5px solid #ff1100;
+      outline: none;
+    }
+    .order-history-products {
+      margin-left: 0;
+      margin-top: 8px;
+      border-top: 1px solid #ececec;
+      padding-top: 10px;
+      overflow: hidden;
+    }
+    .order-history-product {
+      display: flex;
+      align-items: center;
+      font-size: 1.01rem;
+      margin-bottom: 6px;
+      color: #444;
+      padding: 7px 0;
+      border-bottom: 1px dashed #e0e0e0;
+      gap: 16px;
+    }
+    .order-history-product:last-child {
+      border-bottom: none;
+    }
+    .order-product-img-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .order-product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f6f7fb;
+      display: block;
+    }
+    .order-product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+    .order-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 0.98em;
+      color: #888;
+    }
+    .order-date-badge {
+      background: #fff0f0;
+      color: #ff1100;
+      border-radius: 8px;
+      padding: 4px 14px;
+      font-size: 1.01rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 1px 4px rgba(255,17,0,0.04);
+    }
+    .order-total-label {
+      font-weight: 600;
+      color: #444;
+      font-size: 1.08em;
+    }
+    .order-total-value {
+      font-weight: 800;
+      color: #ff1100;
+      font-size: 1.13em;
+      letter-spacing: 0.5px;
+    }
+    .order-details-center-row {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 0 0;
+    }
+    @media (max-width: 800px) {
+      .order-history-section {
+        padding: 24px 8px 18px 8px;
+      }
+      .order-history-main-img {
+        width: 54px;
+        height: 54px;
+        min-width: 54px;
+        min-height: 54px;
+      }
+    }
+    @media (max-width: 500px) {
+      .order-history-header-top {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .order-history-section {
+        padding: 10px 2vw 10px 2vw;
+      }
+      .order-history-item {
+        padding: 12px 6px 10px 6px;
+      }
+      .order-history-flex-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .order-history-main-img {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+      }
+      .order-product-img-wrap {
+        width: 40px;
+        height: 40px;
+      }
+      .order-product-name {
+        max-width: 110px;
+      }
+      .order-product-specs {
+        max-width: 80px;
+      }
+      .order-history-main-info {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .order-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .order-details-center-row {
+        margin: 8px 0 0 0;
+      }
+      .order-history-left-col {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
+      .order-history-left-info {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo">
+              <img src="assets/img/logoshoepee.png" alt="Kickin' Shoes Logo" class="logo-img">
+      <span class="logo-text">Shoepee</span>
+    </a>
+    <button class="hamburger-menu" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false" onclick="openMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#popular">Popular</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <nav class="utility-nav">
+      <ul class="nav-links">
+        <li>
+          <a href="#" onclick="showCart()" style="position: relative; display: inline-block;">
+            <span class="cart-icon" style="font-size: 1.25em;">🛒</span>
+            <span id="cart-count" class="cart-icon-badge">0</span>
+          </a>
+        </li>
+        <li><a href="order-history.html" class="active">Order History</a></li>
+        <li><a href="#" id="auth-link" onclick="handleAuthClick(event)">Login</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <button class="close-mobile-nav" aria-label="Close navigation" onclick="closeMobileNav()">&times;</button>
+      <ul class="nav-links">
+        <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
+        <li><a href="index.html#popular" onclick="closeMobileNav()">Popular</a></li>
+        <li><a href="products.html" onclick="closeMobileNav()">Products</a></li>
+        <li><a href="index.html#contact" onclick="closeMobileNav()">Contact Us</a></li>
+        <li>
+          <a href="#" onclick="showCart();closeMobileNav()" style="position: relative; display: inline-block;">
+            <span class="cart-icon" style="font-size: 1.25em;">🛒</span>
+            <span id="cart-count-mobile" class="cart-icon-badge">0</span>
+          </a>
+        </li>
+        <li><a href="order-history.html" onclick="closeMobileNav()">Order History</a></li>
+        <li><a href="#" id="auth-link-mobile" onclick="handleAuthClick(event);closeMobileNav()">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main style="margin-top:120px; min-height:60vh;">
+    <section class="order-history-section">
+      <div class="order-history-header-top">
+        <span class="order-history-icon">📦</span>
+        <h2>Order History</h2>
+      </div>
+      <div id="orderHistoryList">
+        <!-- Orders will be loaded here -->
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content cart-modal-content">
+      <div class="cart-modal-header">
+        <h2>🛒 Shopping Cart</h2>
+        <button class="close-button" onclick="closeCart()">×</button>
+      </div>
+      
+      <div class="cart-select-all-section">
+        <label class="select-all-label">
+          <input type="checkbox" id="selectAllCartCheckbox" onclick="toggleSelectAllCart()">
+          <span class="checkmark"></span>
+          <span id="selectAllCartLabel">Select All Items</span>
+        </label>
+      </div>
+      
+      <div class="cart-items-container" id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      
+      <div id="cart-empty-state" class="cart-empty-state">
+        <div class="empty-cart-icon">🛒</div>
+        <div class="empty-cart-text">Your cart is empty!</div>
+        <a href="products.html" class="shop-now-btn">Shop Now</a>
+      </div>
+      
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-row">
+            <span class="total-label">Total Amount:</span>
+            <span class="total-amount">₱<span id="cart-total">0</span></span>
+          </div>
+          <div class="cart-items-count">
+            <span id="cart-items-count">0 items</span>
+          </div>
+        </div>
+        <button onclick="checkoutCart()" class="checkout-btn">
+          <span class="checkout-icon">🛍️</span>
+          <span class="checkout-text">Proceed to Checkout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Info Modal -->
+  <div id="customerModal" class="modal">
+    <div class="modal-content customer-modal-content">
+      <span class="close-button" onclick="closeCustomerForm()">×</span>
+      <h2>Customer Information</h2>
+      <form id="customerForm" onsubmit="submitCustomerForm(event)">
+        <input type="text" id="customerName" placeholder="Full Name" required autocomplete="name" />
+        <input type="email" id="customerEmail" placeholder="Email" required autocomplete="email" />
+        <input type="tel" id="customerPhone" placeholder="Phone Number" required autocomplete="tel" />
+        <button type="submit" class="checkout-from-cart">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Receipt Modal -->
+  <div id="receiptModal" class="modal">
+    <div class="modal-content receipt-modal-content">
+      <span class="close-button" onclick="closeReceipt()">×</span>
+      <h2 class="receipt-title">Receipt</h2>
+      <div class="receipt-section">
+        <h3>Date & Time</h3>
+        <p id="orderDateTime"></p>
+      </div>
+      <div id="receipt-items" class="receipt-section">
+        <h3>Product Details</h3>
+        <div id="product-details"></div>
+      </div>
+      <div class="receipt-section">
+        <h3>Customer Details</h3>
+        <p><strong>Name:</strong> <span id="customerNameReceipt"></span></p>
+        <p><strong>Email:</strong> <span id="customerEmailReceipt"></span></p>
+        <p><strong>Phone:</strong> <span id="customerPhoneReceipt"></span></p>
+      </div>
+      <div class="receipt-section total">
+        <h3>Total Price <span id="total-price">0.00</span></h3>
+      </div>
+      <button onclick="closeReceipt()">Close</button>
+    </div>
+  </div>
+
+  <!-- Buy Now Direct Checkout Modal -->
+  <div id="checkout-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">×</span>
+      <h2 class="abcd">Product Description</h2>
+      <p id="product-name"></p>
+      <p id="product-price"></p>
+      <p id="product-description"></p>
+      <form onsubmit="submitCheckout(event)">
+        <button type="submit">Confirm & Checkout</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Selection Modal -->
+  <div id="productSelectionModal" class="product-selection-modal">
+    <div class="product-selection-content">
+      <div class="product-selection-header">
+        <h2>Product Details</h2>
+        <button class="close-selection" onclick="closeProductSelection()">×</button>
+      </div>
+      <div class="product-selection-main">
+        <div class="product-image-section">
+          <img id="selectionProductImage" src="" alt="Product Image">
+        </div>
+        <div class="product-info-section">
+          <div class="product-info-header">
+            <h3 id="selectionProductName"></h3>
+            <p id="selectionProductPrice" class="product-price"></p>
+          </div>
+          <div class="product-options">
+            <div class="size-selection">
+              <h4>Select Size</h4>
+              <div class="size-options">
+                <div class="size-option" onclick="selectSize(this)">36</div>
+                <div class="size-option" onclick="selectSize(this)">37</div>
+                <div class="size-option" onclick="selectSize(this)">38</div>
+                <div class="size-option" onclick="selectSize(this)">39</div>
+                <div class="size-option" onclick="selectSize(this)">40</div>
+                <div class="size-option" onclick="selectSize(this)">41</div>
+                <div class="size-option" onclick="selectSize(this)">42</div>
+                <div class="size-option" onclick="selectSize(this)">43</div>
+              </div>
+            </div>
+            <div class="quantity-selection">
+              <h4>Quantity</h4>
+              <div class="quantity-controls">
+                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" onchange="updateQuantity()">
+                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="price-summary">
+            <div class="price-row">
+              <span>Price per item:</span>
+              <span>₱<span id="pricePerItem">0</span></span>
+            </div>
+            <div class="price-row">
+              <span>Quantity:</span>
+              <span><span id="summaryQuantity">1</span></span>
+            </div>
+            <div class="price-row total">
+              <span>Total:</span>
+              <span>₱<span id="totalPrice">0</span></span>
+            </div>
+          </div>
+          <div class="selection-actions">
+            <button class="add-to-cart-btn" onclick="addSelectedToCart()">
+              <span class="icon">🛒</span>
+              Add to Cart
+            </button>
+            <button class="buy-now-btn" onclick="buySelectedNow()">
+              <span class="icon">⚡</span>
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    function getCurrentUser() {
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+      if (!currentUser) return null;
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      return users.find(u => u.email === currentUser.email) || null;
+    }
+
+    // Function to fix existing order history image paths
+    function fixOrderHistoryImagePaths() {
+      try {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        let hasChanges = false;
+        
+        // Product name to image filename mapping
+        const productImageMap = {
+          'Vomero 5': 'product1-removebg-preview.png',
+          'Samba': 'product2-removebg-preview.png',
+          '530': 'product3-removebg-preview.png',
+          'New Balance 530': 'product3-removebg-preview.png',
+          'Dunk Low Retro': 'product4-removebg-preview.png',
+          'Chuck Taylor All Star': 'product5-removebg-preview.png',
+          'Gel-1130': 'product6-removebg-preview.png',
+          'Air Force 1': 'product7-removebg-preview.png',
+          'Novablast 5': 'product8-removebg-preview.png'
+        };
+        
+        users.forEach(user => {
+          if (user.orderHistory && user.orderHistory.length > 0) {
+            user.orderHistory.forEach(order => {
+              if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                  let needsUpdate = false;
+                  let newImageUrl = item.imageUrl;
+                  // Clean up any duplicate or bad paths
+                  if (newImageUrl) {
+                    // If the path contains file:///, extract only the filename
+                    if (newImageUrl.includes('file:///')) {
+                      const fileName = newImageUrl.substring(newImageUrl.lastIndexOf('/') + 1);
+                      newImageUrl = 'assets/img/' + fileName;
+                    } else {
+                      // Remove any leading assets/img/img/ or img/img/ or img/
+                      newImageUrl = newImageUrl.replace(/assets\/img\/img\//, 'assets/img/');
+                      newImageUrl = newImageUrl.replace(/img\/img\//, 'img/');
+                      newImageUrl = newImageUrl.replace(/^img\//, '');
+                      // If it starts with assets/img/ or http, leave as is
+                      if (!newImageUrl.startsWith('assets/img/') && !newImageUrl.startsWith('http')) {
+                        newImageUrl = 'assets/img/' + newImageUrl;
+                      }
+                    }
+                    if (item.imageUrl !== newImageUrl) needsUpdate = true;
+                  } else {
+                    // If missing, infer from product name
+                    const inferredImage = productImageMap[item.name];
+                    if (inferredImage) {
+                      newImageUrl = 'assets/img/' + inferredImage;
+                      needsUpdate = true;
+                    }
+                  }
+                  if (needsUpdate) {
+                    item.imageUrl = newImageUrl;
+                    hasChanges = true;
+                  }
+                });
+              }
+            });
+          }
+        });
+        
+        if (hasChanges) {
+          localStorage.setItem('users', JSON.stringify(users));
+          console.log('Fixed order history image paths');
+          return true; // Indicate that changes were made
+        }
+        return false; // No changes made
+      } catch (error) {
+        console.error('Error fixing order history image paths:', error);
+        return false;
+      }
+    }
+
+    function buyAgain(item) {
+      // Add the product to cart and show cart or product selection modal
+      // If you want to show the product selection modal for size/qty, call showProductSelection
+      if (typeof showProductSelection === 'function') {
+        showProductSelection(item.name, item.price, item.brand || '', item.imageUrl || '', false);
+      } else {
+        // Fallback: add directly to cart
+        let cartItems = JSON.parse(sessionStorage.getItem('cart')) || [];
+        cartItems.push({
+          id: cartItems.length,
+          name: item.name,
+          brand: item.brand || '',
+          price: item.price,
+          size: item.size !== undefined ? item.size : 36,
+          quantity: item.quantity !== undefined ? item.quantity : 1,
+          imageUrl: item.imageUrl || '',
+          selected: false
+        });
+        sessionStorage.setItem('cart', JSON.stringify(cartItems));
+        alert('Added to cart!');
+      }
+    }
+
+    function buyAgainOrder(order) {
+      // Directly start checkout for these items only (do not add to cart)
+      if (typeof showCustomerForm === 'function') {
+        showCustomerForm(order.items);
+      } else {
+        alert('Unable to start checkout.');
+      }
+    }
+
+    function renderOrderHistory() {
+      const user = getCurrentUser();
+      const container = document.getElementById('orderHistoryList');
+      container.innerHTML = '';
+      if (!user || !user.orderHistory || user.orderHistory.length === 0) {
+        container.innerHTML = `<div class="order-empty-state">
+          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Orders"/>
+          <p>No orders found. Start shopping and your orders will appear here!</p>
+          <a href="index.html#popular" class="order-empty-cta">Shop Now</a>
+        </div>`;
+        return;
+      }
+      user.orderHistory.slice().reverse().forEach((order, idx) => {
+        const isMulti = order.items.length > 1;
+        const firstItem = order.items[0];
+        // Status logic: check if 12 hours have passed since order.date
+        let status = order.status || "Pending";
+        let deliveryDeadline = order.deliveryDeadline ? new Date(order.deliveryDeadline) : null;
+        if (deliveryDeadline && new Date() > deliveryDeadline) {
+          status = "Completed";
+          if(order.status !== "Completed") {
+            order.status = "Completed";
+            // Persist status update
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const u = users.find(u => u.email === user.email);
+            if(u) {
+              const hist = u.orderHistory.find(o => o.date === order.date);
+              if(hist) hist.status = "Completed";
+              localStorage.setItem('users', JSON.stringify(users));
+            }
+          }
+        }
+        // Format expected delivery date
+        let expectedDelivery = order.expectedDeliveryDisplay || (order.expectedDeliveryDate ? new Date(order.expectedDeliveryDate).toLocaleDateString() : "-");
+        // Render order
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order-history-item';
+        orderDiv.innerHTML = `
+          <div class="order-history-flex-row">
+            <div class="order-history-left-col">
+              <div class="order-product-img-wrap order-history-main-img">
+                <img class="order-product-img" src="${firstItem.imageUrl || 'https://cdn-icons-png.flaticon.com/512/3536/3536394.png'}" alt="${firstItem.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3536/3536394.png'" />
+              </div>
+              <div class="order-history-left-info">
+                <span class="order-product-name">${firstItem.name}</span>
+                <span class="order-date-badge">${order.dateDisplay || new Date(order.date).toLocaleString()}</span>
+                <span class="order-date-badge">Payment: ${order.paymentMethod || '-'}</span>
+                <span class="order-date-badge">Delivery: ${expectedDelivery}</span>
+              </div>
+            </div>
+            <div class="order-history-main-info">
+              <span class="order-status-badge ${status === 'Completed' ? 'completed' : ''}"><span class="order-status-icon">${status === 'Completed' ? '✔️' : '⏳'}</span>${status}</span>
+              <span class="order-product-specs">Size: ${firstItem.size} | Qty: ${firstItem.quantity}</span>
+              <span class="order-product-price">₱${(firstItem.price * firstItem.quantity).toFixed(2)}</span>
+              <button class="order-buy-again" onclick='buyAgainOrder(${JSON.stringify(order).replace(/'/g, "&apos;")})'>Buy Again</button>
+              <div class="order-card-footer">
+                <span class="order-total-label">Total:</span>
+                <span class="order-total-value">₱${order.total.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+          ${isMulti ? `<div class="order-details-center-row"><button class="order-details-toggle" aria-expanded="false" aria-controls="order-details-${idx}">View More ▼</button></div>` : ''}
+          ${isMulti ? `<div class="order-history-products order-details" id="order-details-${idx}" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(.4,2,.6,1);">
+            ${order.items.map(item => `
+              <div class="order-history-product">
+                <div class="order-product-img-wrap">
+                  <img class="order-product-img" src="${item.imageUrl || 'https://cdn-icons-png.flaticon.com/512/3536/3536394.png'}" alt="${item.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3536/3536394.png'" />
+                </div>
+                <div class="order-product-info">
+                  <span class="order-product-name">${item.name}</span>
+                  <span class="order-product-specs">Size: ${item.size} | Qty: ${item.quantity}</span>
+                </div>
+                <span class="order-product-price">₱${(item.price * item.quantity).toFixed(2)}</span>
+              </div>
+            `).join('')}
+          </div>` : ''}
+        `;
+        container.appendChild(orderDiv);
+      });
+      // Add expand/collapse logic with smooth animation
+      container.querySelectorAll('.order-details-toggle').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const details = this.closest('.order-history-item').querySelector('.order-details');
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+          if (!expanded) {
+            details.style.display = 'block';
+            details.style.maxHeight = details.scrollHeight + 'px';
+          } else {
+            details.style.maxHeight = '0';
+            setTimeout(() => { details.style.display = 'none'; }, 400);
+          }
+          this.setAttribute('aria-expanded', !expanded);
+          this.innerHTML = !expanded ? 'Hide More ▲' : 'View More ▼';
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const changesMade = fixOrderHistoryImagePaths(); // Fix existing order history image paths first
+      renderOrderHistory(); // Then render the order history
+      
+      // If changes were made, re-render to show the updated images
+      if (changesMade) {
+        console.log('Re-rendering order history after fixing image paths...');
+        setTimeout(() => {
+          renderOrderHistory();
+        }, 100);
+      }
+    });
+  </script>
+  <script>
+    function openMobileNav() {
+      document.getElementById('mobileNav').classList.add('active');
+      document.getElementById('mobileNavOverlay').classList.add('active');
+      document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'true');
+      document.getElementById('mobileNav').setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mobile-nav-open');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobileNav').classList.remove('active');
+      document.getElementById('mobileNavOverlay').classList.remove('active');
+      document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'false');
+      document.getElementById('mobileNav').setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mobile-nav-open');
+    }
+    // Keep cart count in sync on mobile
+    function syncCartCountMobile() {
+      var desktop = document.getElementById('cart-count');
+      var mobile = document.getElementById('cart-count-mobile');
+      if (desktop && mobile) mobile.textContent = desktop.textContent;
+    }
+    document.addEventListener('DOMContentLoaded', syncCartCountMobile);
+    document.addEventListener('cartUpdated', syncCartCountMobile);
+  </script>
+  <script>
+    // Always use dark text for navbar on this page
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.add('navbar-light');
+      navbar.classList.remove('navbar-dark');
+    });
+  </script>
+</body>
+</html> 

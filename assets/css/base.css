@@ -1,0 +1,52 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  margin-top: 80px; 
+  overflow-x: hidden;
+}
+
+body.login-page,
+body.register-page {
+  margin-top: 0 !important;
+} 
+
+/* Prevent background scroll when modal is open */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+  height: 100vh;
+}
+
+/* Ensure scroll is restored when modal closes */
+body:not(.modal-open) {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  body {
+    margin-top: 0 !important;
+  }
+  
+  body.login-page,
+  body.register-page {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    margin-top: 0 !important;
+  }
+  
+  body.login-page,
+  body.register-page {
+    margin-top: 0 !important;
+  }
+} 

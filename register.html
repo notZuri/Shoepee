@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Shoepee</title>
+    <link rel="icon" href="assets/img/logoshoepee.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/hero.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet" href="assets/css/modals.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/order-history.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="register-page">
+    <header class="navbar navbar-light">
+        <a href="index.html" class="logo">
+            <img src="assets/img/logoshoepee.png" alt="Shoepee's Logo" class="logo-img">
+            <span class="logo-text">Shoepee</span>
+        </a>
+        <button class="hamburger-menu" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false" onclick="openMobileNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="order-history.html">Order History</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+        <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <button class="close-mobile-nav" aria-label="Close navigation" onclick="closeMobileNav()">&times;</button>
+            <ul class="nav-links">
+                <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
+                <li><a href="products.html" onclick="closeMobileNav()">Products</a></li>
+                <li><a href="order-history.html" onclick="closeMobileNav()">Order History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Create an Account</h2>
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="auth-button">Register</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        function openMobileNav() {
+            document.getElementById('mobileNav').classList.add('active');
+            document.getElementById('mobileNavOverlay').style.display = 'block';
+            document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'true');
+            document.getElementById('mobileNav').setAttribute('aria-hidden', 'false');
+        }
+        function closeMobileNav() {
+            document.getElementById('mobileNav').classList.remove('active');
+            document.getElementById('mobileNavOverlay').style.display = 'none';
+            document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'false');
+            document.getElementById('mobileNav').setAttribute('aria-hidden', 'true');
+        }
+    </script>
+</body>
+</html>

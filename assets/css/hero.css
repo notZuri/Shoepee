@@ -1,0 +1,220 @@
+.hero {
+  background-image: url('../img/bg5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 83vh;
+  color: #fff;
+  padding-left: 75px;
+  margin-top: -80px;
+  text-align: left;
+  padding-top: 160px;
+  position: relative;
+}
+
+/* Ensure hero background only applies to pages with hero sections */
+body:not(.login-page):not(.register-page) .hero {
+  background-image: url('../img/bg5.png');
+}
+
+.hero::before {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero h2 {
+  font-size: 72px;
+  margin-bottom: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero h2.typewriter {
+  overflow: hidden;
+  border-right: 3px solid #f35c50;
+  white-space: nowrap;
+  margin: 0;
+  animation: typing 3.5s steps(40, end),
+             blink-caret 0.75s step-end infinite;
+}
+
+.hero .highlight {
+  color: #ff1100;
+  position: relative;
+  display: inline-block;
+  font-size: 100px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.hero .highlight.typewriter {
+  overflow: hidden;
+  border-right: 3px solid #ff1100;
+  white-space: nowrap;
+  animation: typing 2s steps(20, end),
+             blink-caret 0.75s step-end infinite;
+}
+
+.hero .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f35c50;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.hero .highlight:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero-subtitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0.95;
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-description {
+  font-size: 20px;
+  margin-bottom: 35px;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  opacity: 0.9;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out 0.4s backwards;
+  max-width: 500px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.butones {
+  margin-top: 25px;
+  background-color: #ff1100;
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #f35c50;
+  animation: fadeInUp 1s ease-out 0.6s backwards;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.butones:hover {
+  background-color: transparent;
+  color: #f35c50;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(243, 92, 80, 0.3);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #f35c50; }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    margin-top: 0;
+    padding-left: 8px;
+    padding-top: 48px;
+    min-height: 100svh;
+    height: auto;
+    width: 100vw;
+    overflow-x: hidden;
+    z-index: 1;
+  }
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+  .hero .highlight {
+    font-size: 2.5rem;
+  }
+  .hero-content {
+    max-width: 95vw;
+    width: 100%;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+    max-width: 90vw;
+  }
+  .butones {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 80px;
+    padding-left: 4px;
+    min-height: 60vh;
+    height: auto;
+    background-size: cover; /* Always fill the hero area */
+    background-position: center top; /* Show the top/center of the image */
+    background-repeat: no-repeat;
+    /* Remove background-color and background-size: contain */
+  }
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  .hero .highlight {
+    font-size: 2rem;
+  }
+  .hero-content {
+    max-width: 99vw;
+    width: 100%;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .hero-description {
+    font-size: 0.95rem;
+    max-width: 98vw;
+  }
+  .butones {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+  .hero h2.typewriter {
+    animation: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    border-right: none !important;
+  }
+  /* On mobile, background-size: cover ensures the image fills the hero area */
+}
+
+/* NOTE: For the home page, set body { margin-top: 0 !important; } in a mobile media query in base.css if needed. */ 

@@ -1,0 +1,128 @@
+.order-history-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 40px 30px;
+  margin: 40px auto 0 auto;
+  max-width: 1100px;
+  min-height: 60vh;
+}
+
+.order-history-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.order-history-item {
+  background: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  margin-bottom: 24px;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-history-flex-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.order-history-main-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.order-product-img-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.order-product-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.order-product-specs {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.order-history-main-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 18px;
+  gap: 16px;
+}
+
+.order-details-center-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.order-history-left-col {
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.order-history-left-info {
+  font-size: 15px;
+  color: #888;
+}
+
+@media (max-width: 800px) {
+  .order-history-section {
+    padding: 20px 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .order-history-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .order-history-section {
+    padding: 10px 2px;
+  }
+  .order-history-item {
+    padding: 12px 6px;
+  }
+  .order-history-flex-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .order-history-main-img {
+    width: 80px;
+    height: 80px;
+  }
+} 

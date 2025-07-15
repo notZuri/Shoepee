@@ -3,85 +3,298 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sumisipang Sapatos</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <meta name="author" content="Ian Christian Amistoso">
+  <meta name="description" content="An E-commerce website for a shoe store that is a project for my subject in college">
+  <title>Shoepee</title>
+  <link rel="icon" href="assets/img/logoshoepee.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/products.css">
+  <link rel="stylesheet" href="assets/css/modals.css">
+  <link rel="stylesheet" href="assets/css/cart.css">
+  <link rel="stylesheet" href="assets/css/order-history.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
     <a href="#" class="logo">
-      <img src="piclogo.jpeg" alt="Kickin' Shoes Logo" class="logo-img">
-      <span class="logo-text">Kickin' Shoes</span>
+              <img src="assets/img/logoshoepee.png" alt="Shoepee's Logo" class="logo-img">
+      <span class="logo-text">Shoepee</span>
     </a>
-    <nav>
+    <button class="hamburger-menu" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false" onclick="openMobileNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="main-nav">
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#popular">Popular</a></li>
-        <li><a href="#">Products</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="#contact">Contact Us</a></li>
-        <li><a href="#" onclick="showCart()">Cart 🛒 <span id="cart-count" class="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+    <nav class="utility-nav">
+      <ul class="nav-links">
+        <!-- Desktop Cart Icon -->
+        <li>
+          <a href="#" onclick="showCart()" style="position: relative; display: inline-block;">
+            <span class="cart-icon" style="font-size: 1.25em;">🛒</span>
+            <span id="cart-count" class="cart-icon-badge">0</span>
+          </a>
+        </li>
+        <li><a href="order-history.html">Order History</a></li>
+        <li><a href="#" id="auth-link" onclick="handleAuthClick(event)">Login</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <button class="close-mobile-nav" aria-label="Close navigation" onclick="closeMobileNav()">&times;</button>
+      <ul class="nav-links">
+        <li><a href="#hero" onclick="closeMobileNav()">Home</a></li>
+        <li><a href="#popular" onclick="closeMobileNav()">Popular</a></li>
+        <li><a href="products.html" onclick="closeMobileNav()">Products</a></li>
+        <li><a href="#contact" onclick="closeMobileNav()">Contact Us</a></li>
+        <!-- Mobile Cart Icon -->
+        <li>
+          <a href="#" onclick="showCart();closeMobileNav()" style="position: relative; display: inline-block;">
+            <span class="cart-icon" style="font-size: 1.25em;">🛒</span>
+            <span id="cart-count-mobile" class="cart-icon-badge">0</span>
+          </a>
+        </li>
+        <li><a href="order-history.html" onclick="closeMobileNav()">Order History</a></li>
+        <li><a href="#" id="auth-link-mobile" onclick="handleAuthClick(event);closeMobileNav()">Login</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <h2>Step Into Style</h2>
-    <p>Fuel your every step</p>
-    <a href="#popular"><button class="butones">Shop Now</button></a>
+    <div class="hero-content">
+      <h2>Elevate Your <span class="highlight">[Style]</span></h2>
+      <p class="hero-subtitle">Where Fashion Meets Comfort</p>
+      <p class="hero-description">Step into a world of premium footwear that defines your unique personality</p>
+      <a href="#popular"><button class="butones">Explore Collection</button></a>
+    </div>
   </section>
 
   <!-- Featured Products -->
   <section class="popular" id="popular">
-    <h2 class="subtitle">'Wag ka na pumili, hindi ka naman pinili</h2>
+    <h2 class="subtitle">Top Sellers This Month!🔥</h2>
     <div class="product-grid">
-      <!-- Product Cards -->
-      <div class="product-card" data-name="AirFlex Pro" data-price="2999">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="AirFlex Pro">
-        <h3>Adadis</h3>
-        <p>₱2,999</p>
-        <button class="add-to-cart" onclick="addToCart('AirFlex Pro', 2999)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('AirFlex Pro', '₱2,999', 'A great running shoe with excellent grip and comfort.')">Buy Now</button>
+      <!-- Premium Card Design -->
+      <div class="product-card premium" data-name="Nike Vomero 5" data-price="7999" data-description="A premium running shoe from Nike, known for its comfort and durability. Perfect for daily runs and casual wear.">
+        <div class="card-badge">BESTSELLER!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product1-removebg-preview.png" alt="Nike Vomero 5">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Nike</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(9.4k)</span>
+            </div>
+          </div>
+          <h3>Vomero 5</h3>
+          <div class="price-tag">₱7,999</div>
+          <div class="sales-info">13.7k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Vomero 5', 7999, 'Nike', 'assets/img/product1-removebg-preview.png')">🛒 Add to Cart </button>
+            <button class="buy-now" onclick="showProductSelection('Vomero 5', 7999, 'Nike', 'assets/img/product1-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
 
-      <div class="product-card" data-name="UrbanStride" data-price="3499">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="UrbanStride">
-        <h3>Nyek</h3>
-        <p>₱3,499</p>
-        <button class="add-to-cart" onclick="addToCart('UrbanStride', 3499)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('UrbanStride', '₱3,499', 'Perfect for casual wear, stylish and comfortable.')">Buy Now</button>
+      <div class="product-card premium" data-name="Adidas Samba" data-price="6999" data-description="Classic Adidas style with a modern twist. The Samba is versatile, stylish, and comfortable for all-day use.">
+        <div class="card-badge">TRENDING!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product2-removebg-preview.png" alt="Adidas Samba">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Adidas</div>
+            <div class="rating">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(8.8k)</span>
+            </div>
+          </div>
+          <h3>Samba</h3>
+          <div class="price-tag">₱6,999</div>
+          <div class="sales-info">12.9k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Samba', 6999, 'Adidas', 'assets/img/product2-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Samba', 6999, 'Adidas', 'assets/img/product2-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
 
-      <div class="product-card" data-name="StrideMaster" data-price="3999">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="StrideMaster">
-        <h3>Conbirds</h3>
-        <p>₱3,999</p>
-        <button class="add-to-cart" onclick="addToCart('StrideMaster', 3999)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('StrideMaster', '₱3,999', 'A high-performance shoe for intense workouts.')">Buy Now</button>
+      <div class="product-card premium" data-name="New Balance 530" data-price="4999" data-description="Retro-inspired design meets modern comfort. The 530 is a favorite for both athletes and sneakerheads.">
+        <div class="card-badge">NEW!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product3-removebg-preview.png" alt="New Balance 530">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">New Balance</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(3.9k)</span>
+            </div>
+          </div>
+          <h3>530</h3>
+          <div class="price-tag">₱4,999</div>
+          <div class="sales-info">4.2k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('530', 4999, 'New Balance', 'assets/img/product3-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('530', 4999, 'New Balance', 'assets/img/product3-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
 
-      <div class="product-card" data-name="StepChaser" data-price="2699">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="StepChaser">
-        <h3>Adidas</h3>
-        <p>₱2,699</p>
-        <button class="add-to-cart" onclick="addToCart('StepChaser', 2699)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('StepChaser', '₱2,699', 'Casual yet stylish footwear for everyday comfort.')">Buy Now</button>
+      <div class="product-card premium" data-name="Nike Dunk Low Retro" data-price="5999" data-description="Iconic street style. The Dunk Low Retro is a must-have for sneaker collectors and fashion enthusiasts.">
+        <div class="card-badge">PREMIUM!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product4-removebg-preview.png" alt="Nike Dunk Low Retro">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Nike</div>
+            <div class="rating">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(5.5k)</span>
+            </div>
+          </div>
+          <h3>Nike Dunk Low Retro</h3>
+          <div class="price-tag">₱5,999</div>
+          <div class="sales-info">9.8k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Dunk Low Retro', 5999, 'Nike', 'assets/img/product4-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Dunk Low Retro', 5999, 'Nike', 'assets/img/product4-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
 
-      <div class="product-card" data-name="ComfortBoost" data-price="3199">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="ComfortBoost">
-        <h3>Nike</h3>
-        <p>₱3,199</p>
-        <button class="add-to-cart" onclick="addToCart('ComfortBoost', 3199)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('ComfortBoost', '₱3,199', 'Enhance your walking experience with this cushioned shoe.')">Buy Now</button>
+      <div class="product-card premium" data-name="Chuck Taylor All Star" data-price="3999" data-description="Timeless Converse silhouette. The Chuck Taylor All Star is a staple for every wardrobe.">
+        <div class="card-badge">HOT!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product5-removebg-preview.png" alt="Chuck Taylor All Star">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Converse</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(5.8k)</span>
+            </div>
+          </div>
+          <h3>Chuck Taylor All Star</h3>
+          <div class="price-tag">₱3,999</div>
+          <div class="sales-info">9.5k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Chuck Taylor All Star', 3999, 'Converse', 'assets/img/product5-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Chuck Taylor All Star', 3999, 'Converse', 'assets/img/product5-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
 
-      <div class="product-card" data-name="SpeedRun" data-price="4199">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80" alt="SpeedRun">
-        <h3>Converse</h3>
-        <p>₱4,199</p>
-        <button class="add-to-cart" onclick="addToCart('SpeedRun', 4199)">Add to Cart</button>
-        <button class="buy-now" onclick="buyNow('SpeedRun', '₱4,199', 'A lightweight shoe designed for fast-paced athletes.')">Buy Now</button>
+      <div class="product-card premium" data-name="Asics Gel-1130" data-price="4999" data-description="Classic Asics performance and comfort. The Gel-1130 is perfect for running and everyday activities.">
+        <div class="card-badge">CLASSIC!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product6-removebg-preview.png" alt="Asics Gel-1130">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Asics</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(6.5k)</span>
+            </div>
+          </div>
+          <h3>Gel-1130</h3>
+          <div class="price-tag">₱4,999</div>
+          <div class="sales-info">11.2k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Gel-1130', 4999, 'Asics', 'assets/img/product6-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Gel-1130', 4999, 'Asics', 'assets/img/product6-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Product Card 1 -->
+      <div class="product-card premium" data-name="Nike Air Force 1" data-price="5999" data-description="Legendary Nike Air cushioning and style. The Air Force 1 is a global icon in footwear.">
+        <div class="card-badge">LIMITED!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product7-removebg-preview.png" alt="Nike Air Force 1">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Nike</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(11.9k)</span>
+            </div>
+          </div>
+          <h3>Air Force 1</h3>
+          <div class="price-tag">₱5,999</div>
+          <div class="sales-info">14.5k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Air Force 1', 5999, 'Nike', 'assets/img/product7-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Air Force 1', 5999, 'Nike', 'assets/img/product7-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Product Card 2 -->
+      <div class="product-card premium" data-name="Asics Novablast 6" data-price="8999" data-description="Experience next-level bounce and energy return with the Asics Novablast 6. Built for runners who want more.">
+        <div class="card-badge">EXCLUSIVE!🔥</div>
+        <div class="product-image">
+                      <img src="assets/img/product8-removebg-preview.png" alt="Asics Novablast 6">
+          <div class="hover-overlay">
+            <span class="quick-view" onclick="showQuickView(this)">Quick View</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-header">
+            <div class="brand-tag">Asics</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(11.1k)</span>
+            </div>
+          </div>
+          <h3>Novablast 5</h3>
+          <div class="price-tag">₱8,999</div>
+          <div class="sales-info">13.8k sold this month</div>
+          <div class="card-actions">
+            <button class="add-to-cart" onclick="showProductSelection('Novablast 5', 8999, 'Asics', 'assets/img/product8-removebg-preview.png')">🛒 Add to Cart</button>
+            <button class="buy-now" onclick="showProductSelection('Novablast 5', 8999, 'Asics', 'assets/img/product8-removebg-preview.png', true)">⚡ Buy Now</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -89,8 +302,8 @@
   <!-- Contact Section / Footer -->
   <footer class="contact-footer" id="contact">
     <div class="contact-container">
-      <h2>Contact Us</h2>
-      <p>May reklamo ka? Edi magreklamo ka!</p>
+      <h2>Get In Touch</h2>
+      <p>Have questions about our products? Need help with your order? Contact us!</p>
 
       <form action="backend/contact.php" method="POST" class="contact-form">
         <input type="text" name="name" placeholder="Your Name" required />
@@ -100,61 +313,247 @@
       </form>
 
       <div class="contact-info">
-        <p>Email: sumisipangsapatos@gmail.com</p>
-        <p>Phone: +63 969 696 6969</p>
+        <p>✉️Email: Shoepee@gmail.com</p>
+        <p>📞Phone: +63 969 696 6969</p>
       </div>
-      <p>&copy; Sumisipang Sapatos.</p>
+      <div class="footer-logo-row">
+        <img src="assets/img/logoshoepee.png" alt="Shoepee's Logo" class="logo-img">
+        <span class="logo-text">© Ian Christian Amistoso</span>
+      </div>
     </div>
   </footer>
 
   <!-- Cart Modal -->
-  <div id="cartModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeCart()">×</span>
-      <h2>Shopping Cart</h2>
-      <div id="cart-items"></div>
-      <h3>Total: ₱<span id="cart-total">0</span></h3>
-      <button onclick="checkoutCart()" class="checkout-from-cart">Checkout</button>
+  <div id="cartModal" class="modal">
+    <div class="modal-content cart-modal-content">
+      <div class="cart-modal-header">
+        <h2>🛒 Shopping Cart</h2>
+        <button class="close-button" onclick="closeCart()">×</button>
+      </div>
+      
+      <div class="cart-select-all-section">
+        <label class="select-all-label">
+          <input type="checkbox" id="selectAllCartCheckbox" onclick="toggleSelectAllCart()">
+          <span class="checkmark"></span>
+          <span id="selectAllCartLabel">Select All Items</span>
+        </label>
+      </div>
+      
+      <div class="cart-items-container" id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      
+      <div id="cart-empty-state" class="cart-empty-state">
+        <div class="empty-cart-icon">🛒</div>
+        <div class="empty-cart-text">Your cart is empty!</div>
+        <a href="products.html" class="shop-now-btn">Shop Now</a>
+      </div>
+      
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-row">
+            <span class="total-label">Total Amount:</span>
+            <span class="total-amount">₱<span id="cart-total">0</span></span>
+          </div>
+          <div class="cart-items-count">
+            <span id="cart-items-count">0 items</span>
+          </div>
+        </div>
+        <button onclick="checkoutCart()" class="checkout-btn">
+          <span class="checkout-icon">🛍️</span>
+          <span class="checkout-text">Proceed to Checkout</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Customer Info Modal -->
-  <div id="customerModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeCustomerForm()">×</span>
-      <h2>Customer Information</h2>
-      <form id="customerForm" onsubmit="submitCustomerForm(event)">
-        <input type="text" id="customerName" placeholder="Full Name" required />
-        <input type="email" id="customerEmail" placeholder="Email" required />
-        <input type="tel" id="customerPhone" placeholder="Phone Number" required />
-        <button type="submit" class="checkout-from-cart">Place Order</button>
-      </form>
+  <div id="customerModal" class="modal">
+    <div class="modal-content customer-modal-content">
+      <div class="customer-modal-header">
+        <h2>👤 Customer Information</h2>
+        <button class="close-button" onclick="closeCustomerForm()">×</button>
+      </div>
+      
+      <div class="customer-modal-body">
+        <div class="customer-info-intro">
+          <p>Please provide your details to complete your order</p>
+        </div>
+        
+        <form id="customerForm" onsubmit="submitCustomerForm(event)" class="customer-form">
+          <div class="form-field-group">
+            <label for="customerName" class="form-label">
+              <span class="field-icon">👤</span>
+              Full Name
+            </label>
+            <input 
+              type="text" 
+              id="customerName" 
+              placeholder="Enter your full name" 
+              required 
+              class="customer-input"
+              autocomplete="name"
+            />
+          </div>
+          
+          <div class="form-field-group">
+            <label for="customerEmail" class="form-label">
+              <span class="field-icon">📧</span>
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              id="customerEmail" 
+              placeholder="Enter your email address" 
+              required 
+              class="customer-input"
+              autocomplete="email"
+            />
+          </div>
+          
+          <div class="form-field-group">
+            <label for="customerPhone" class="form-label">
+              <span class="field-icon">📱</span>
+              Phone Number
+            </label>
+            <input 
+              type="tel" 
+              id="customerPhone" 
+              placeholder="Enter your phone number" 
+              required 
+              class="customer-input"
+              autocomplete="tel"
+            />
+          </div>
+          
+          <div class="form-field-group">
+            <label class="form-label">Payment Method</label>
+            <div class="payment-method-options enhanced-payment-methods">
+              <label class="payment-method-card">
+                <input type="radio" name="paymentMethod" value="COD" required>
+                <span class="payment-icon">💵</span>
+                <span class="payment-label payment-label-cod">
+                  <span class="cod-desktop">Cash on Delivery</span>
+                  <span class="cod-mobile">Cash on Delivery</span>
+                </span>
+              </label>
+              <div class="payment-method-row-group">
+                <label class="payment-method-card">
+                  <input type="radio" name="paymentMethod" value="GCash">
+                  <span class="payment-icon">📱</span>
+                  <span class="payment-label">GCash</span>
+                </label>
+                <label class="payment-method-card">
+                  <input type="radio" name="paymentMethod" value="Credit Card">
+                  <span class="payment-icon">💳</span>
+                  <span class="payment-label">Credit Card</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="customer-form-footer">
+            <button type="submit" class="place-order-btn">
+              <span class="order-icon">🛍️</span>
+              <span class="order-text">Place Order</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
   <!-- Receipt Modal -->
-  <div id="receiptModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h2 class="receipt-title">Receipt</h2>
-      <div id="receipt-items" class="receipt-section">
-        <h3>Product Details</h3>
-        <div id="product-details"></div>
+  <div id="receiptModal" class="modal">
+    <div class="modal-content receipt-modal-content">
+      <div class="receipt-modal-header">
+        <h2>📄 Order Receipt</h2>
+        <button class="close-button" onclick="closeReceipt()">×</button>
       </div>
-      <div class="receipt-section">
-        <h3>Customer Details</h3>
-        <p><strong>Name:</strong> <span id="customerNameReceipt"></span></p>
-        <p><strong>Email:</strong> <span id="customerEmailReceipt"></span></p>
-        <p><strong>Phone:</strong> <span id="customerPhoneReceipt"></span></p>
+      
+      <div class="receipt-modal-body">
+        <div class="receipt-success-banner">
+          <div class="success-icon">✅</div>
+          <h3>Order Successful!</h3>
+          <p>Thank you for your purchase. Your order has been confirmed.</p>
+        </div>
+        
+        <div class="receipt-content">
+          <div class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">🕒</span>
+              <h3>Order Information</h3>
+            </div>
+            <div class="section-content">
+              <p id="orderDateTime" class="order-datetime"></p>
+            </div>
+          </div>
+          
+          <div id="receipt-items" class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">🛍️</span>
+              <h3>Product Details</h3>
+            </div>
+            <div class="section-content">
+              <div id="product-details" class="product-details-list"></div>
+            </div>
+          </div>
+          
+          <div class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">👤</span>
+              <h3>Customer Information</h3>
+            </div>
+            <div class="section-content customer-details">
+              <div class="detail-row">
+                <span class="detail-label">Name:</span>
+                <span class="detail-value" id="customerNameReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value" id="customerEmailReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Phone:</span>
+                <span class="detail-value" id="customerPhoneReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Payment Method:</span>
+                <span class="detail-value" id="paymentMethodReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Expected Delivery:</span>
+                <span class="detail-value" id="expectedDeliveryReceipt"></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="receipt-section total-section">
+            <div class="section-header">
+              <span class="section-icon">💰</span>
+              <h3>Total Amount</h3>
+            </div>
+            <div class="section-content">
+              <div class="total-amount-display">
+                <span class="total-label">Total Price:</span>
+                <span class="total-value"><span id="total-price">₱0.00</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="receipt-footer">
+          <button onclick="closeReceipt()" class="close-receipt-btn">
+            <span class="btn-icon">✋</span>
+            <span class="btn-text">Close Receipt</span>
+          </button>
+        </div>
       </div>
-      <div class="receipt-section total">
-        <h3>Total Price <span id="total-price">0.00</span></h3>
-      </div>
-      <button onclick="document.getElementById('receiptModal').style.display='none'">Close</button>
     </div>
   </div>
 
   <!-- Buy Now Direct Checkout Modal -->
-  <div id="checkout-modal" class="modal" style="display:none;">
+  <div id="checkout-modal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="closeModal()">×</span>
       <h2 class="abcd">Product Description</h2>
@@ -167,10 +566,156 @@
     </div>
   </div>
 
+  <!-- Product Selection Modal -->
+  <div id="productSelectionModal" class="product-selection-modal">
+    <div class="product-selection-content fit-viewport">
+      <div class="product-selection-header-row">
+        <div class="product-selection-header-title">Product Details</div>
+        <button class="close-button" onclick="closeProductSelection()">×</button>
+      </div>
+      <div class="product-selection-main two-column compact">
+        <div class="product-selection-image-center">
+          <img id="selectionProductImage" src="" alt="Product Image">
+        </div>
+        <div class="product-selection-options">
+          <div class="product-selection-name" id="selectionProductName"></div>
+          <div class="size-selection">
+            <h4>Select Size</h4>
+            <div class="size-options">
+              <div class="size-option" onclick="selectSize(this)">36</div>
+              <div class="size-option" onclick="selectSize(this)">37</div>
+              <div class="size-option" onclick="selectSize(this)">38</div>
+              <div class="size-option" onclick="selectSize(this)">39</div>
+              <div class="size-option" onclick="selectSize(this)">40</div>
+              <div class="size-option" onclick="selectSize(this)">41</div>
+              <div class="size-option" onclick="selectSize(this)">42</div>
+              <div class="size-option" onclick="selectSize(this)">43</div>
+            </div>
+          </div>
+          <div class="quantity-selection">
+            <h4>Quantity</h4>
+            <div class="quantity-controls">
+              <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+              <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" onchange="updateQuantity()">
+              <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+          </div>
+          <div class="price-summary compact">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.95em;">
+              <span>Price per item:</span>
+              <span>₱<span id="pricePerItem">0</span></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.95em;">
+              <span>Quantity:</span>
+              <span><span id="summaryQuantity">1</span></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1em;">
+              <span>Total:</span>
+              <span>₱<span id="totalPrice">0</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-selection-actions compact">
+        <button class="add-to-cart-btn" onclick="addSelectedToCart()">
+          <span class="icon">🛒</span>
+          Add to Cart
+        </button>
+        <button class="buy-now-btn" onclick="buySelectedNow()">
+          <span class="icon">⚡</span>
+          Buy Now
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Container -->
   <div id="toast-container"></div>
 
   <!-- JS File -->
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script>
+    // Enhanced navbar text color logic based on scroll/background
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.querySelector('.navbar');
+      const contactSection = document.getElementById('contact');
+      
+      // Debounce function to prevent excessive scroll event firing
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+      
+      function updateNavbarColor() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Check if we're in the contact section (full screen)
+        const contactTop = contactSection.offsetTop;
+        const contactBottom = contactTop + contactSection.offsetHeight;
+        const isInContactSection = scrollY >= contactTop && scrollY < contactBottom;
+        
+        // Check if we're near the bottom of the page
+        const isNearBottom = scrollY + windowHeight >= documentHeight - 100;
+        
+        // Remove existing classes first
+        navbar.classList.remove('navbar-light', 'navbar-dark');
+        
+        if (isInContactSection || isNearBottom) {
+          // In contact section (dark background) - use white text
+          navbar.classList.add('navbar-dark');
+        } else if (scrollY > windowHeight * 0.7) {
+          // Past hero section but not in contact - use dark text on light background
+          navbar.classList.add('navbar-light');
+        } else {
+          // In hero section (dark background) - use white text
+          navbar.classList.add('navbar-dark');
+        }
+      }
+      
+      // Use debounced version of updateNavbarColor
+      const debouncedUpdateNavbarColor = debounce(updateNavbarColor, 10);
+      
+      updateNavbarColor();
+      window.addEventListener('scroll', debouncedUpdateNavbarColor);
+      window.addEventListener('resize', debouncedUpdateNavbarColor);
+    });
+  </script>
+  <script>
+function openMobileNav() {
+  document.getElementById('mobileNav').classList.add('active');
+  document.getElementById('mobileNavOverlay').classList.add('active');
+  document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'true');
+  document.getElementById('mobileNav').setAttribute('aria-hidden', 'false');
+  document.body.classList.add('mobile-nav-open');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('active');
+  document.getElementById('mobileNavOverlay').classList.remove('active');
+  document.querySelector('.hamburger-menu').setAttribute('aria-expanded', 'false');
+  document.getElementById('mobileNav').setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('mobile-nav-open');
+  // Accessibility fix: move focus to hamburger menu button
+  var hamburger = document.querySelector('.hamburger-menu');
+  if (hamburger) hamburger.focus();
+}
+// Keep cart count in sync on mobile
+function syncCartCountMobile() {
+  var desktop = document.getElementById('cart-count');
+  var mobile = document.getElementById('cart-count-mobile');
+  if (desktop && mobile) mobile.textContent = desktop.textContent;
+}
+document.addEventListener('DOMContentLoaded', syncCartCountMobile);
+document.addEventListener('cartUpdated', syncCartCountMobile);
+  </script>
 </body>
 </html>
