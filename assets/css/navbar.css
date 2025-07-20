@@ -274,16 +274,20 @@ body.register-page .navbar {
     background: rgba(255,255,255,0.95);
   }
   
-  /* Products page specific mobile navbar styling */
-  body:not(.login-page):not(.register-page) .navbar .nav-links li a {
-    color: #000 !important;
+  /* Add correct mobile navbar text color rules */
+  .mobile-nav .nav-links li a,
+  .mobile-nav .logo-text {
+    color: #222 !important;
   }
-  
-  body:not(.login-page):not(.register-page) .navbar .logo-text {
-    color: #000 !important;
-  }
-  
-  body:not(.login-page):not(.register-page) .hamburger-menu span {
-    background: #000 !important;
+
+  @media (max-width: 600px) {
+    .navbar:not(.navbar-light) .nav-links li a,
+    .navbar:not(.navbar-light) .logo-text {
+      color: #fff !important;
+    }
+    .navbar.navbar-light .nav-links li a,
+    .navbar.navbar-light .logo-text {
+      color: #222 !important;
+    }
   }
 } 

@@ -9,10 +9,8 @@ const animationClasses = {
     typewriter: 'typewriter'
 };
 
-// Elements to animate
+// Elements to animate (removed hero h2 and highlight)
 const elementsToAnimate = [
-    { selector: '.hero h2', animation: 'typewriter' },
-    { selector: '.hero .highlight', animation: 'typewriter' },
     { selector: '.product-card', animation: 'slideInUp' },
     { selector: '.popular .subtitle', animation: 'slideInDown' },
     { selector: '.contact-container', animation: 'fadeIn' },
@@ -22,7 +20,13 @@ const elementsToAnimate = [
 
 // Initialize animations
 function initAnimations() {
-    // Create intersection observer
+    // Typewriter animation for hero section: only run once on page load
+    const heroTitle = document.querySelector('.hero h2');
+    const heroHighlight = document.querySelector('.hero .highlight');
+    if (heroTitle) heroTitle.classList.add('typewriter');
+    if (heroHighlight) heroHighlight.classList.add('typewriter');
+
+    // Create intersection observer for other elements
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const element = entry.target;
@@ -49,7 +53,7 @@ function initAnimations() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    // Observe all elements
+    // Observe all elements (except hero typewriter)
     elementsToAnimate.forEach(({ selector }) => {
         const elements = document.querySelectorAll(selector);
         elements.forEach(element => {
