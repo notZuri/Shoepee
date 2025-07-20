@@ -497,40 +497,173 @@
   <!-- Customer Info Modal -->
   <div id="customerModal" class="modal">
     <div class="modal-content customer-modal-content">
-      <span class="close-button" onclick="closeCustomerForm()">×</span>
-      <h2>Customer Information</h2>
-      <form id="customerForm" onsubmit="submitCustomerForm(event)">
-        <input type="text" id="customerName" placeholder="Full Name" required autocomplete="name" />
-        <input type="email" id="customerEmail" placeholder="Email" required autocomplete="email" />
-        <input type="tel" id="customerPhone" placeholder="Phone Number" required autocomplete="tel" />
-        <button type="submit" class="checkout-from-cart">Place Order</button>
-      </form>
+      <div class="customer-modal-header">
+        <h2>👤 Customer Information</h2>
+        <button class="close-button" onclick="closeCustomerForm()">×</button>
+      </div>
+      <div class="customer-modal-body">
+        <div class="customer-info-intro">
+          <p>Please provide your details to complete your order</p>
+        </div>
+        <form id="customerForm" onsubmit="submitCustomerForm(event)" class="customer-form">
+          <div class="form-field-group">
+            <label for="customerName" class="form-label">
+              <span class="field-icon">👤</span>
+              Full Name
+            </label>
+            <input 
+              type="text" 
+              id="customerName" 
+              placeholder="Enter your full name" 
+              required 
+              class="customer-input"
+              autocomplete="name"
+            />
+          </div>
+          <div class="form-field-group">
+            <label for="customerEmail" class="form-label">
+              <span class="field-icon">📧</span>
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              id="customerEmail" 
+              placeholder="Enter your email address" 
+              required 
+              class="customer-input"
+              autocomplete="email"
+            />
+          </div>
+          <div class="form-field-group">
+            <label for="customerPhone" class="form-label">
+              <span class="field-icon">📱</span>
+              Phone Number
+            </label>
+            <input 
+              type="tel" 
+              id="customerPhone" 
+              placeholder="Enter your phone number" 
+              required 
+              class="customer-input"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="form-field-group">
+            <label class="form-label">Payment Method</label>
+            <div class="payment-method-options enhanced-payment-methods">
+              <label class="payment-method-card">
+                <input type="radio" name="paymentMethod" value="COD" required>
+                <span class="payment-icon">💵</span>
+                <span class="payment-label payment-label-cod">
+                  <span class="cod-desktop">Cash on Delivery</span>
+                  <span class="cod-mobile">Cash on Delivery</span>
+                </span>
+              </label>
+              <div class="payment-method-row-group">
+                <label class="payment-method-card">
+                  <input type="radio" name="paymentMethod" value="GCash">
+                  <span class="payment-icon">📱</span>
+                  <span class="payment-label">GCash</span>
+                </label>
+                <label class="payment-method-card">
+                  <input type="radio" name="paymentMethod" value="Credit Card">
+                  <span class="payment-icon">💳</span>
+                  <span class="payment-label">Credit Card</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="customer-form-footer">
+            <button type="submit" class="place-order-btn">
+              <span class="order-icon">🛍️</span>
+              <span class="order-text">Place Order</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
   <!-- Receipt Modal -->
   <div id="receiptModal" class="modal">
     <div class="modal-content receipt-modal-content">
-      <span class="close-button" onclick="closeReceipt()">×</span>
-      <h2 class="receipt-title">Receipt</h2>
-      <div class="receipt-section">
-        <h3>Date & Time</h3>
-        <p id="orderDateTime"></p>
+      <div class="receipt-modal-header">
+        <h2>📄 Order Receipt</h2>
+        <button class="close-button" onclick="closeReceipt()">×</button>
       </div>
-      <div id="receipt-items" class="receipt-section">
-        <h3>Product Details</h3>
-        <div id="product-details"></div>
+      <div class="receipt-modal-body">
+        <div class="receipt-success-banner">
+          <div class="success-icon">✅</div>
+          <h3>Order Successful!</h3>
+          <p>Thank you for your purchase. Your order has been confirmed.</p>
+        </div>
+        <div class="receipt-content">
+          <div class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">🕒</span>
+              <h3>Order Information</h3>
+            </div>
+            <div class="section-content">
+              <p id="orderDateTime" class="order-datetime"></p>
+            </div>
+          </div>
+          <div id="receipt-items" class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">🛍️</span>
+              <h3>Product Details</h3>
+            </div>
+            <div class="section-content">
+              <div id="product-details" class="product-details-list"></div>
+            </div>
+          </div>
+          <div class="receipt-section">
+            <div class="section-header">
+              <span class="section-icon">👤</span>
+              <h3>Customer Information</h3>
+            </div>
+            <div class="section-content customer-details">
+              <div class="detail-row">
+                <span class="detail-label">Name:</span>
+                <span class="detail-value" id="customerNameReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value" id="customerEmailReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Phone:</span>
+                <span class="detail-value" id="customerPhoneReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Payment Method:</span>
+                <span class="detail-value" id="paymentMethodReceipt"></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Expected Delivery:</span>
+                <span class="detail-value" id="expectedDeliveryReceipt"></span>
+              </div>
+            </div>
+          </div>
+          <div class="receipt-section total-section">
+            <div class="section-header">
+              <span class="section-icon">💰</span>
+              <h3>Total Amount</h3>
+            </div>
+            <div class="section-content">
+              <div class="total-amount-display">
+                <span class="total-label">Total Price:</span>
+                <span class="total-value"><span id="total-price">₱0.00</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="receipt-footer">
+          <button onclick="closeReceipt()" class="close-receipt-btn">
+            <span class="btn-icon">✋</span>
+            <span class="btn-text">Close Receipt</span>
+          </button>
+        </div>
       </div>
-      <div class="receipt-section">
-        <h3>Customer Details</h3>
-        <p><strong>Name:</strong> <span id="customerNameReceipt"></span></p>
-        <p><strong>Email:</strong> <span id="customerEmailReceipt"></span></p>
-        <p><strong>Phone:</strong> <span id="customerPhoneReceipt"></span></p>
-      </div>
-      <div class="receipt-section total">
-        <h3>Total Price <span id="total-price">0.00</span></h3>
-      </div>
-      <button onclick="closeReceipt()">Close</button>
     </div>
   </div>
 
@@ -616,6 +749,24 @@
     </div>
   </div>
 
+  <!-- Toast Container (add near the end of <body>) -->
+<div id="toast-container"></div>
+
+<script>
+// Copy of showToast from index.html
+function showToast(msg, type = 'success') {
+  const container = document.getElementById('toast-container'),
+        toast = document.createElement('div');
+  toast.classList.add('toast', type);
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.classList.remove('fade-out'), 10);
+  setTimeout(() => {
+    toast.classList.add('fade-out');
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
+</script>
   <script src="assets/js/script.js"></script>
   <script>
     function getCurrentUser() {
@@ -722,12 +873,42 @@
     }
 
     function buyAgainOrder(order) {
-      // Directly start checkout for these items only (do not add to cart)
-      if (typeof showCustomerForm === 'function') {
-        showCustomerForm(order.items);
-      } else {
-        alert('Unable to start checkout.');
+      // Add the first item of the order to the cart and select only it
+      const item = order.items[0];
+      if (!item) return;
+      if (!isLoggedIn()) {
+        showToast('Please login to add items to cart!', 'error');
+        setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+        return;
       }
+      // Get current cart, unselect all, add new item as selected only
+      let cartItems = JSON.parse(sessionStorage.getItem('cart')) || [];
+      cartItems.forEach(i => i.selected = false);
+      // Add the new item, selected only
+      cartItems.push({
+        id: Date.now(),
+        name: item.name,
+        brand: item.brand || '',
+        price: item.price,
+        size: item.size !== undefined ? item.size : 36,
+        quantity: item.quantity !== undefined ? item.quantity : 1,
+        imageUrl: item.imageUrl || '',
+        selected: true
+      });
+      sessionStorage.setItem('cart', JSON.stringify(cartItems));
+      // Update cart in localStorage for the current user
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userIndex = users.findIndex(u => u.email === currentUser.email);
+        if (userIndex !== -1) {
+          users[userIndex].cart = cartItems;
+          localStorage.setItem('users', JSON.stringify(users));
+        }
+      }
+      updateCart();
+      showCart();
+      showToast('Added to cart!');
     }
 
     function renderOrderHistory() {
