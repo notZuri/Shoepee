@@ -51,7 +51,6 @@ A modern, responsive e-commerce website for a premium shoe store. Shoepee offers
 
 - **Responsive Design**: Mobile-first with breakpoints for all devices
 - **Glassmorphism UI**: Clean visuals, cards, and modal overlays
-- **Theme Toggle**: Light/dark mode with localStorage persistence
 - **Keyboard Navigation**: ARIA-compliant where applicable
 - **CSS Animations**: Transitions, hover effects, slide-in modals
 
